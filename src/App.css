@@ -1,0 +1,28 @@
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.Palette {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .Palette {
+        flex-direction: row;
+    }
+}
+
+.ColorBlock {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ColorBlock h2 {
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}

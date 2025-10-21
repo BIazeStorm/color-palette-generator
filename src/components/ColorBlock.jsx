@@ -1,9 +1,9 @@
 import React from "react";
 
-function ColorBlock(){
+function ColorBlock({ hex }){
     return (
-        <div className="ColorBlock">
-            <h2>#000000</h2>
+        <div className="ColorBlock" style={{ backgroundColor: hex }}>
+            <h2>{hex}</h2>
         </div>
     );
 }

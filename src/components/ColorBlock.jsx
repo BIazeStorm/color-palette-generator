@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ColorBlock({ color, onToggleLock }){
     const { id, hex, isLocked } = color;
+
+    const [isCopied, setIsCopied] = useState(false);
+
+    const handleCopyToClipboard = () => {
+        navigator.clipboard.writeText(hex);
+        setIsCopied(true);
+    };
 
     return (
         <div className="ColorBlock" style={{ backgroundColor: hex }}>
@@ -11,7 +18,9 @@ function ColorBlock({ color, onToggleLock }){
             >
                 {isLocked ? '🔒' : '🔓'}
             </button>
-            <h2>{hex}</h2>
+            <h2 className="ColorBlock__hex" onClick={handleCopyToClipboard}>
+                {hex}
+            </h2>
         </div>
     );
 }

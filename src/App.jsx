@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Palette from './components/Palette'
+import Controls from './components/Controls';
 import './App.css'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+      <Controls />
       <Palette colors={colors} />
     </div>
   );

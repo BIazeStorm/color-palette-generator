@@ -19,7 +19,8 @@
 .ColorBlock {
     flex-grow: 1;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 1.5rem;
     align-items: center;
     position: relative;
 }
@@ -36,12 +37,35 @@
     opacity: 0.5;
     transition: opacity 0.2s;
 }
+
 .ColorBlock__lock-btn:hover {
     opacity: 1;
 }
+
 .ColorBlock__lock-btn.is-locked {
     opacity: 1;
     color: #ffc107;
+}
+
+.ColorBlock__sliders {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 80%;
+    max-width: 250px;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.ColorBlock__sliders label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.ColorBlock__sliders input[type='range'] {
+    width: 100%;
 }
 
 .ColorBlock h2 {

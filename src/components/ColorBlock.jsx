@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ColorBlock({ color, onToggleLock }){
+function ColorBlock({ color, onToggleLock }) {
     const { id, hex, isLocked } = color;
 
     const [isCopied, setIsCopied] = useState(false);
@@ -13,12 +13,28 @@ function ColorBlock({ color, onToggleLock }){
 
     return (
         <div className="ColorBlock" style={{ backgroundColor: hex }}>
-            <button 
+            <button
                 className={`ColorBlock__lock-btn ${isLocked ? 'is-locked' : ''}`}
                 onClick={() => onToggleLock(id)}
             >
                 {isLocked ? '🔒' : '🔓'}
             </button>
+
+            <div className="ColorBlock__sliders">
+                <label>
+                    <span>Hue</span>
+                    <input type="range" min="0" max="360" />
+                </label>
+                <label>
+                    <span>Saturation</span>
+                    <input type="range" min="0" max="1" step="0.01" />
+                </label>
+                <label>
+                    <span>Lightness</span>
+                    <input type="range" min="0" max="1" step="0.01" />
+                </label>
+            </div>
+
             <h2 className="ColorBlock__hex" onClick={handleCopyToClipboard}>
                 {isCopied ? 'Copied!' : hex}
             </h2>

@@ -1,21 +1,33 @@
 import React, { useState } from 'react'
 import Palette from './components/Palette'
 import Controls from './components/Controls';
+import { generateRandomColor } from './utils/colorUtils';
 import './App.css'
+
+const getInitialColors = () => {
+  return Array.from({ length: 5 }, () => ({
+    id: crypto.randomUUID(),
+    hex: generateRandomColor(),
+  }));
+};
 
 function App() {
 
-  const [colors, setColors] = useState([
-    { id: 1, hex: '#e63946' },
-    { id: 2, hex: '#f1faee' },
-    { id: 3, hex: '#a8dadc' },
-    { id: 4, hex: '#457b9d' },
-    { id: 5, hex: '#1d3557' },
-  ]);
+  const [colors, setColors] = useState(getInitialColors());
+
+  const handleGeneratePalette = () => {
+    const newColors = colors.map((color) => {
+      return {
+        ...color,
+        hex: generateRandomColor(),
+      };
+    });
+    setColors(newColors);
+  };
 
   return (
     <div className="App">
-      <Controls />
+      <Controls onGenerate={handleGeneratePalette} />
       <Palette colors={colors} />
     </div>
   );

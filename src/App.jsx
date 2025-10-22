@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 import Palette from './components/Palette'
 import Controls from './components/Controls';
-import { generateRandomColor } from './utils/colorUtils';
+import { generateRandomColor, createColorObject } from './utils/colorUtils';
 import './App.css'
 
 const getInitialColors = () => {
-  return Array.from({ length: 5 }, () => ({
-    id: crypto.randomUUID(),
-    hex: generateRandomColor(),
-  }));
+  return Array.from({ length: 5 }, () => createColorObject());
 };
 
 function App() {
@@ -17,10 +14,7 @@ function App() {
 
   const handleGeneratePalette = () => {
     const newColors = colors.map((color) => {
-      return {
-        ...color,
-        hex: generateRandomColor(),
-      };
+      return createColorObject();
     });
     setColors(newColors);
   };

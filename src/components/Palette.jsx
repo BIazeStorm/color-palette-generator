@@ -5,7 +5,7 @@ function Palette({ colors }) {
     return (
         <div className="Palette">
             {colors.map((color) => (
-                <ColorBlock key={color.id} hex={color.hex} />
+                <ColorBlock key={color.id} color={color} />
             ))}
         </div>
     );

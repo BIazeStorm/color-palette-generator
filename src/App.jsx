@@ -27,10 +27,21 @@ function App() {
     setColors(newColors);
   }
 
+  const handleUpdateColor = (id, newHex) => {
+    const newColors = colors.map((color) =>
+      color.id === id ? { ...color, hex: newHex } : color
+    );
+    setColors(newColors);
+  };
+
   return (
     <div className="App">
       <Controls onGenerate={handleGeneratePalette} />
-      <Palette colors={colors} onToggleLock={handleToggleLock} />
+      <Palette 
+        colors={colors} 
+        onToggleLock={handleToggleLock}
+        onUpdateColor={handleUpdateColor}
+      />
     </div>
   );
 }

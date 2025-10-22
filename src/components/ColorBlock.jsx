@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import chroma from "chroma-js";
 
-function ColorBlock({ color, onToggleLock }) {
+function ColorBlock({ color, onToggleLock, onUpdateColor }) {
     const { id, hex, isLocked } = color;
 
     const [isCopied, setIsCopied] = useState(false);
@@ -13,6 +13,16 @@ function ColorBlock({ color, onToggleLock }) {
         navigator.clipboard.writeText(hex);
         setIsCopied(true);
         setTimeout(() => setIsCopied(false), 1500)
+    };
+
+    const handleSliderChange = (sliderName, value) => {
+        const newHsl = [
+            sliderName === 'h' ? value : hslValues.h,
+            sliderName === 's' ? value : hslValues.s,
+            sliderName === 'l' ? value : hslValues.l,
+        ];
+        const newHex = chroma.hsl(...newHsl).hex();
+        onUpdateColor(id, newHex);
     };
 
     return (
@@ -27,15 +37,35 @@ function ColorBlock({ color, onToggleLock }) {
             <div className="ColorBlock__sliders">
                 <label>
                     <span>Hue</span>
-                    <input type="range" min="0" max="360" value={hslValues.h} />
+                    <input
+                        type="range"
+                        min="0"
+                        max="360"
+                        value={hslValues.h}
+                        onChange={(e) => handleSliderChange('h', parseFloat(e.target.value))}
+                    />
                 </label>
                 <label>
                     <span>Saturation</span>
-                    <input type="range" min="0" max="1" step="0.01" value={hslValues.s} />
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={hslValues.s}
+                        onChange={(e) => handleSliderChange('s', parseFloat(e.target.value))}
+                    />
                 </label>
                 <label>
                     <span>Lightness</span>
-                    <input type="range" min="0" max="1" step="0.01" value={hslValues.l} />
+                    <input
+                        type="range"
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={hslValues.l}
+                        onChange={(e) => handleSliderChange('l', parseFloat(e.target.value))}
+                    />
                 </label>
             </div>
 

@@ -8,6 +8,7 @@ function ColorBlock({ color, onToggleLock }){
     const handleCopyToClipboard = () => {
         navigator.clipboard.writeText(hex);
         setIsCopied(true);
+        setTimeout(() => setIsCopied(false), 1500)
     };
 
     return (
@@ -19,7 +20,7 @@ function ColorBlock({ color, onToggleLock }){
                 {isLocked ? '🔒' : '🔓'}
             </button>
             <h2 className="ColorBlock__hex" onClick={handleCopyToClipboard}>
-                {hex}
+                {isCopied ? 'Copied!' : hex}
             </h2>
         </div>
     );

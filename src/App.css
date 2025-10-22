@@ -21,6 +21,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+}
+
+.ColorBlock__lock-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+.ColorBlock__lock-btn:hover {
+    opacity: 1;
+}
+.ColorBlock__lock-btn.is-locked {
+    opacity: 1;
+    color: #ffc107;
 }
 
 .ColorBlock h2 {

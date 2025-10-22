@@ -19,10 +19,17 @@ function App() {
     setColors(newColors);
   };
 
+  const handleToggleLock = (id) => {
+    const newColors = colors.map((color) =>
+      color.id === id ? { ...color, isLocked: !color.isLocked } : color
+    );
+    setColors(newColors);
+  }
+
   return (
     <div className="App">
       <Controls onGenerate={handleGeneratePalette} />
-      <Palette colors={colors} />
+      <Palette colors={colors} onToggleLock={handleToggleLock} />
     </div>
   );
 }

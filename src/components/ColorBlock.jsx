@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import chroma from "chroma-js";
 
 function ColorBlock({ color, onToggleLock }) {
     const { id, hex, isLocked } = color;
 
     const [isCopied, setIsCopied] = useState(false);
+
+    const [h, s, l] = chroma(hex).hsl();
+    const hslValues = { h: isNaN(h) ? 0 : h, s, l };
 
     const handleCopyToClipboard = () => {
         navigator.clipboard.writeText(hex);
@@ -23,15 +27,15 @@ function ColorBlock({ color, onToggleLock }) {
             <div className="ColorBlock__sliders">
                 <label>
                     <span>Hue</span>
-                    <input type="range" min="0" max="360" />
+                    <input type="range" min="0" max="360" value={hslValues.h} />
                 </label>
                 <label>
                     <span>Saturation</span>
-                    <input type="range" min="0" max="1" step="0.01" />
+                    <input type="range" min="0" max="1" step="0.01" value={hslValues.s} />
                 </label>
                 <label>
                     <span>Lightness</span>
-                    <input type="range" min="0" max="1" step="0.01" />
+                    <input type="range" min="0" max="1" step="0.01" value={hslValues.l} />
                 </label>
             </div>
 

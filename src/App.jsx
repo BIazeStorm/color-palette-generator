@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import Palette from './components/Palette'
 import Controls from './components/Controls';
-import { generateRandomColor, createColorObject } from './utils/colorUtils';
+import { 
+  createColorObject, 
+  generateRandomPalette,
+} from './utils/colorUtils';
 import './App.css'
 
 const getInitialColors = () => {
@@ -13,9 +16,7 @@ function App() {
   const [colors, setColors] = useState(getInitialColors());
 
   const handleGeneratePalette = () => {
-    const newColors = colors.map((color) => {
-      return createColorObject();
-    });
+    const newColors = generateRandomPalette(colors);
     setColors(newColors);
   };
 

@@ -11,3 +11,12 @@ export const createColorObject = () => {
         isLocked: false,
     };
 };
+
+export const generateRandomPalette = (colors) => {
+    return colors.map((color) => {
+        if (color.isLocked) {
+            return color;
+        }
+        return createColorObject();
+    });
+};

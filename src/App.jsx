@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Palette from './components/Palette'
 import Controls from './components/Controls';
+import SavedPalettes from './components/SavedPalettes';
 import { 
   createColorObject, 
   generateRandomPalette,
@@ -14,6 +15,8 @@ const getInitialColors = () => {
 function App() {
 
   const [colors, setColors] = useState(getInitialColors());
+
+  const [savedPalettes, setSavedPalettes] = useState([]);
 
   const handleGeneratePalette = () => {
     const newColors = generateRandomPalette(colors);
@@ -34,13 +37,30 @@ function App() {
     setColors(newColors);
   };
 
+  const handleSavePalette = () => {
+    setSavedPalettes([colors, ...savedPalettes]);
+  };
+  
+  const handleLoadPalette = (palette) => {
+    setColors(palette);
+  };
+
   return (
     <div className="App">
-      <Controls onGenerate={handleGeneratePalette} />
+      <Controls 
+        onGenerate={handleGeneratePalette} 
+        onSavePalette={handleSavePalette}
+      />
+      
       <Palette 
         colors={colors} 
         onToggleLock={handleToggleLock}
         onUpdateColor={handleUpdateColor}
+      />
+
+      <SavedPalettes 
+        savedPalettes={savedPalettes} 
+        onLoadPalette={handleLoadPalette}
       />
     </div>
   );

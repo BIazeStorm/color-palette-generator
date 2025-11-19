@@ -71,3 +71,84 @@
 .ColorBlock h2 {
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
+
+/* Контейнер для секції збережених палітр */
+.SavedPalettes {
+  padding: 1rem;
+  background-color: #1a1a1a;
+  border-top: 1px solid #444;
+  width: 100%;
+}
+
+.SavedPalettes h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+/* Сітка/Список палітр */
+.SavedPalettes__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Окрема збережена палітра (міні-картка) */
+.SavedPalettes__item {
+  display: flex;
+  width: 150px;
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid #555;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.SavedPalettes__item:hover {
+  transform: scale(1.05);
+  border-color: #aaa;
+}
+
+/* Кожен колір всередині міні-палітри */
+.SavedPalettes__item-color {
+  flex-grow: 1;
+  height: 100%;
+}
+
+/* --- Controls (Панель керування) --- */
+.Controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  background-color: #333;
+  border-bottom: 1px solid #444;
+  width: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Стилізація кнопок */
+.Controls__btn {
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background-color: #646cff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.Controls__btn:hover {
+  background-color: #535bf2;
+  transform: translateY(-2px);
+}
+
+.Controls__btn:active {
+  transform: translateY(0);
+  background-color: #4048c9;
+}

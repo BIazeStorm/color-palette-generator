@@ -104,6 +104,7 @@
   cursor: pointer;
   border: 2px solid #555;
   transition: transform 0.2s, border-color 0.2s;
+  position: relative;
 }
 
 .SavedPalettes__item:hover {
@@ -115,6 +116,32 @@
 .SavedPalettes__item-color {
   flex-grow: 1;
   height: 100%;
+}
+
+.SavedPalettes__copy-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border: none;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  
+  opacity: 0; 
+  transition: opacity 0.2s;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Показуємо кнопку, коли наводимо на батьківський блок */
+.SavedPalettes__item:hover .SavedPalettes__copy-btn {
+  opacity: 1;
 }
 
 /* --- Controls (Панель керування) --- */

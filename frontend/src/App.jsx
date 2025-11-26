@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react' 
+import axios from 'axios';
 import Palette from './components/Palette'
 import Controls from './components/Controls';
 import SavedPalettes from './components/SavedPalettes';
@@ -7,6 +8,8 @@ import {
   generateRandomPalette,
 } from './utils/colorUtils';
 import './App.css'
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const getInitialColors = () => {
   return Array.from({ length: 5 }, () => createColorObject());
@@ -17,6 +20,17 @@ function App() {
   const [colors, setColors] = useState(getInitialColors());
 
   const [savedPalettes, setSavedPalettes] = useState([]);
+
+  useEffect(() => {
+    if (!API_URL) return;
+
+    axios.get(`${API_URL}/api/palettes`)
+      .then((response) => {
+        const formattedPalettes = response.data.map(palette => palette.colors);
+        setSavedPalettes(formattedPalettes);
+      })
+      .catch((error) => console.error("Error fetching palettes:", error));
+  }, []);
 
   const handleGeneratePalette = () => {
     const newColors = generateRandomPalette(colors);
@@ -37,8 +51,15 @@ function App() {
     setColors(newColors);
   };
 
-  const handleSavePalette = () => {
-    setSavedPalettes([colors, ...savedPalettes]);
+  const handleSavePalette = async () => {
+    try {
+      const response = await axios.post(`${API_URL}/api/palettes`, { colors });
+      
+      setSavedPalettes([response.data.colors, ...savedPalettes]);
+    } catch (error) {
+      console.error("Error saving palette:", error);
+      alert("Failed to save palette. Check console.");
+    }
   };
   
   const handleLoadPalette = (palette) => {

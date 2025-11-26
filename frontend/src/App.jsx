@@ -9,7 +9,9 @@ import {
 } from './utils/colorUtils';
 import './App.css'
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.PROD 
+  ? '' 
+  : import.meta.env.VITE_API_URL;
 
 const getInitialColors = () => {
   return Array.from({ length: 5 }, () => createColorObject());

@@ -1,5 +1,5 @@
 # 1. Етап збірки Фронтенду
-FROM node:20-alpine as build-frontend
+FROM node:20-alpine AS build-frontend
 WORKDIR /app/frontend
 COPY frontend/package*.json ./
 RUN npm install

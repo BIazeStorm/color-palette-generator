@@ -24,7 +24,7 @@ function App() {
   const [savedPalettes, setSavedPalettes] = useState([]);
 
   useEffect(() => {
-    if (!API_URL) return;
+    //if (!API_URL) return;
 
     axios.get(`${API_URL}/api/palettes`)
       .then((response) => {
